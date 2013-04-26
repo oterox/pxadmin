@@ -1,0 +1,8 @@
+px_tasks:
+    resource: "@PXTasksBundle/Resources/config/routing.yml"
+    prefix:   /tasks
+
+px_security:
+    resource: "@PXSecurityBundle/Resources/config/routing.yml"
+    prefix:   /
+

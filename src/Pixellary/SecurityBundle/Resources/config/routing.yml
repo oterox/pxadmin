@@ -1,0 +1,3 @@
+px_security_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: PXSecurityBundle:Default:index }

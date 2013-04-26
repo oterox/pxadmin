@@ -1,0 +1,11 @@
+px_tasks_homepage:
+    pattern:  /
+    defaults: { _controller: PXTasksBundle:Default:index }
+
+taskList:
+    pattern:  /tasklist
+    defaults: { _controller: PXTasksBundle:Default:taskList }
+
+taskForm:
+    pattern:  /taskform
+    defaults: { _controller: PXTasksBundle:Default:taskForm }

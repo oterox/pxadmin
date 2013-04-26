@@ -1,0 +1,7 @@
+parameters:
+#    px_tasks.example.class: Pixellary\TaskBundle\Example
+
+services:
+#    px_tasks.example:
+#        class: %px_tasks.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
