@@ -2,6 +2,9 @@
 
 {% block container %}
 
+
+
+
     <div class="row">
 
         <div class="span4">
@@ -12,10 +15,32 @@
             </div>
         </div>
         <div class="span8">
-            <h2>Latest News</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn" href="#">View details &raquo;</a></p>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Task #</th>
+                    <th>Title</th>
+                    <th>Code</th>
+                    <th>Progress</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for task in tasks %}
+                <tr>
+                    <td>{{ task.id }}</td>
+                    <td>{{ task.taskName }}</td>
+                    <td>{{ task.taskCode }}</td>
+                    <td><span class="label label-success">{{ task.taskProgress }}</span></td>
+                </tr>
+                {% endfor %}
+
+
+                </tbody>
+            </table>
         </div>
+
         <div class="span12">
             <table class="table table-striped">
                 <thead>

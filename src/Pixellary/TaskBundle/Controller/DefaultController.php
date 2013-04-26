@@ -14,7 +14,11 @@ class DefaultController extends Controller
 
     public function taskListAction()
     {
-        return $this->render('PXTasksBundle::taskInsert.html.twig', array());
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $tasks = $em->getRepository('PXTasksBundle:Task')->findAll();
+
+        return $this->render('PXTasksBundle::taskInsert.html.twig', array( 'tasks'=> $tasks ));
     }
 
     public function taskFormAction()
