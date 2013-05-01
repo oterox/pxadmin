@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Pixellary\TaskBundle\Entity\Task;
+use Pixellary\TaskBundle\Form\Type\TaskType;
 
 class DefaultController extends Controller
 {
@@ -30,13 +31,7 @@ class DefaultController extends Controller
         $task = new Task();
         $task->setTaskDeadline(new \DateTime('first day of next month'));
 
-        $form = $this->createFormBuilder($task)
-            ->add('taskCode')
-            ->add('taskName')
-            ->add('taskDesc', 'textarea')
-            ->add('taskDeadline', 'date')
-            ->add('taskProgress', 'integer')
-            ->getForm();
+        $form = $this->createForm(new TaskType(), $task);
 
         if ($request->getMethod() == 'POST') {
 
