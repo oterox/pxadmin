@@ -16,7 +16,7 @@ class DefaultController extends Controller
 
     public function taskListAction()
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $tasks = $em->getRepository('PXTasksBundle:Task')->findAll();
 
@@ -43,7 +43,7 @@ class DefaultController extends Controller
             $form->bindRequest($request);
             if ($form->isValid()) {
 
-                $em = $this->getDoctrine()->getEntityManager();
+                $em = $this->getDoctrine()->getManager();
 
                 $em->persist($task);
 
@@ -60,7 +60,6 @@ class DefaultController extends Controller
         }
 
         return $this->render('PXTasksBundle::taskForm.html.twig',array('form' => $form->createView()) );
-
     }
 
 
