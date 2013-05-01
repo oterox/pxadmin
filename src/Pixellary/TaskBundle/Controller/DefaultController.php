@@ -40,7 +40,7 @@ class DefaultController extends Controller
 
         if ($request->getMethod() == 'POST') {
 
-            $form->bindRequest($request);
+            $form->bind($request);
             if ($form->isValid()) {
 
                 $em = $this->getDoctrine()->getManager();
