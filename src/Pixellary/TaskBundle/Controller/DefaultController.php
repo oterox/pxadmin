@@ -4,6 +4,7 @@ namespace Pixellary\TaskBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Pixellary\TaskBundle\Entity\Task;
 
 class DefaultController extends Controller
@@ -24,7 +25,7 @@ class DefaultController extends Controller
 
     public function taskFormAction()
     {
-        //$request = $this->getRequest();
+        $request = $this->getRequest();
 
         $task = new Task();
         $task->setTaskDeadline(new \DateTime('first day of next month'));
@@ -34,11 +35,31 @@ class DefaultController extends Controller
             ->add('taskName')
             ->add('taskDesc', 'textarea')
             ->add('taskDeadline', 'date')
+            ->add('taskProgress', 'integer')
             ->getForm();
-        return $this->render(
-            'PXTasksBundle::taskForm.html.twig',
-            array('form' => $form->createView())
-        );
+
+        if ($request->getMethod() == 'POST') {
+
+            $form->bindRequest($request);
+            if ($form->isValid()) {
+
+                $em = $this->getDoctrine()->getEntityManager();
+
+                $em->persist($task);
+
+                $tasks = $em->getRepository('PXTasksBundle:Task')->findAll();
+
+                $em->flush();
+
+                $this->get('session')->getFlashBag()->add('notice', 'SUCCESS!');
+
+                return $this->redirect($this->generateUrl('taskList'));
+
+            }
+
+        }
+
+        return $this->render('PXTasksBundle::taskForm.html.twig',array('form' => $form->createView()) );
 
     }
 
