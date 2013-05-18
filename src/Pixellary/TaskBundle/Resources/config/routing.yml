@@ -9,3 +9,9 @@ taskList:
 taskForm:
     pattern:  /taskform
     defaults: { _controller: PXTasksBundle:Default:taskForm }
+
+#que nombres van aqui????
+PXTasksBundle:
+    resource: "@PXTasksBundle/Controller/"
+    prefix:   /
+    type:     annotation
