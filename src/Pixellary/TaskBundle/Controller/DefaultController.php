@@ -19,7 +19,7 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $tasks = $em->getRepository('PXTasksBundle:Task')->findAll();
+        $tasks = $em->getRepository('PXTasksBundle:Task')->findBy(array(), array('id' => 'DESC'));
 
         return $this->render('PXTasksBundle::taskList.html.twig', array( 'tasks'=> $tasks ));
     }
